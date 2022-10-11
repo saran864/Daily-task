@@ -1,5 +1,8 @@
-class Passenger {
-    private String mailid;
+package TrainReserve;
+
+
+public class Passenger {
+	private String mailid;
 	private String  name;
 	private byte age;
 	private String  password;
@@ -45,5 +48,9 @@ class Passenger {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public static void main(String[] args) {
+		
 	}
 }
