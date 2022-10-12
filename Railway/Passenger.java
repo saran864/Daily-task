@@ -50,7 +50,4 @@ public class Passenger {
 		this.password = password;
 	}
 
-	public static void main(String[] args) {
-		
-	}
 }
