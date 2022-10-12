@@ -8,10 +8,66 @@ import java.util.*;
 import java.sql.*;
 
 public class Admin {
-	int train_no;
+	
 	private int train;
+	private String adminid = "admin001";
+	private String password = "rrb@123";
 
 	Scanner getInput = new Scanner(System.in);
+	
+	
+	public void adminAccess() {
+
+		boolean d;
+		System.out.println("->Enter Loginid :");
+		String adminmail = getInput.next();
+		System.out.println("->Enter password:");
+		String adminpass = getInput.next();
+		if (adminid.equals(adminmail) && adminpass.equals(password)) {
+			d = true;
+			while (d) {
+
+				System.out.println("Welcome Admin\n");
+				System.out.println("1.Add Trains\n2.View Trains\n3.View Customers\n4.Back");
+				int choice = getInput.nextInt();
+				// c=false;
+				switch (choice) {
+				case 1: {
+					addTrain();
+					break;
+				}
+				case 2: {
+					viewTrainList();
+					break;
+				}
+
+				case 3: {
+					User user = new User();
+					user.userList();
+					break;
+				}
+
+				case 4: {
+					d = false;
+					Operation operation =new Operation();
+					 operation.function();
+					
+					break;
+				}
+
+				}
+
+			}
+		} else
+			System.out.println("Worng Credentials...!");
+
+	
+	}
+	
+	
+	
+	
+	
 
 	public void viewTrainList() {
 		System.out.println("TrainNo       TrainName                    Trainfrom     Trainto    Tic.Count   Tic.Cost   " );
@@ -23,8 +79,8 @@ public class Admin {
 				
 				System.out.println(rs.getInt("trainno") + "\t" + rs.getString("train_name") +" \t"+ rs.getString("train_from") +"\t"+ rs.getString("train_to")
 						 +"\t"+ rs.getInt("ticket_count") +"\t"+ rs.getString("ticket_cost"));
-				 stmt.close();
-				 rs.close();
+				 //stmt.close();
+				 //rs.close();
 			}
 
 		} catch (SQLException e) {
@@ -69,112 +125,5 @@ public class Admin {
 		}
 	}
 
-	boolean b = true;
 
-	public void ticket() {
-		while (b) {
-			System.out.println("\n1.BookTicket\n2.SearchTrain\n3.Back");
-			int ipt = getInput.nextInt();
-
-			switch (ipt) {
-			case 1: {
-				viewTrainList();
-				System.out.println("Enter the Train No");
-				 train_no = getInput.nextInt();
-				System.out.println("Enter no.of tickets:");
-				int noOfTickets = getInput.nextInt();
-				try {
-
-					PreparedStatement ps1 = Jdbc.jdbcConnection().prepareStatement(
-							"update train set ticket_count =ticket_count-" + noOfTickets + " where trainno=?");
-					ps1.setInt(1, train_no);
-					int queryExecution = ps1.executeUpdate();
-					ps1.close();
-					PreparedStatement ps2 = Jdbc.jdbcConnection()
-							.prepareStatement("select ticket_cost,train_name from train where trainno=?");
-					ps2.setInt(1, train_no);
-					ps2.close();
-					ResultSet rs = ps2.executeQuery();
-					rs.next();
-					
-					
-					int amt = rs.getInt(1);
-					String trainname = rs.getString(2);
-					int total_amount = amt * noOfTickets;
-					System.out.println("************************");
-					System.out.println("Train No = " + train_no + "\nTrain Name = " + trainname + "\nTotal Amount  = " + total_amount+"\nHappy journey With"+trainname);
-				  System.out.println("************************");
-				  rs.close();
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				break;
-			}
-			case 2: {
-				System.out.println("1.Chennai-Senkottai\n2.Madurai-Chennai\n3.Chennai-Thanjavur\n4.Tuticorin-Chennai \n5.Trichy -Chennai\n6.Nagercoil-Chennai");
-				int trainfromto = getInput.nextInt();
-				switch (trainfromto)
-				{
-				case 1:
-				{
-					
-				 train_no=122348;
-				 
-					break;
-				}
-				case 2:
-				{train_no=122349;
-					break;
-				}
-				case 3:
-				{train_no=122350;
-					break;
-				}
-				case 4:
-				{train_no=122351;
-					break;
-				}
-				case 5:
-				{train_no=122352;
-					break;
-				}
-				case 6:
-				{train_no=122353;
-					break;
-				}
-				}
-				try {
-				PreparedStatement ps3 = Jdbc.jdbcConnection()
-						.prepareStatement("select * from train where trainno=?");
-				ps3.setInt(1, train_no);
-				ResultSet rs = ps3.executeQuery();
-				rs.next();
-				System.out.println("--------Available Trains------- ");
-				System.out.println(
-						"TrainNo    TrainName                     From            To           Tick.Count     Tick.Cost");
-				System.out.println(rs.getInt("trainno") + "\t" + rs.getString("train_name") +" \t"+ rs.getString("train_from") +"\t"+ rs.getString("train_to")
-				 +"\t"+ rs.getInt("ticket_count") +"\t"+ rs.getString("ticket_cost"));}
-				 catch (Exception e) {
-						e.printStackTrace();
-					}
-				
-				
-			
-				break;
-
-			}
-
-			case 3: {
-				System.out.println("1.User Signup\n2.User Login\n3.Admin Login\n4.Exit");
-				b = false;
-				break;
-			}
-
-			}
-
-		}
-
-	}
 }
