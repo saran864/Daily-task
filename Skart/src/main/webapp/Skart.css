@@ -1,0 +1,146 @@
+@charset "UTF-8";
+.button {
+    display: block;
+    width: 115px;
+    height: 25px;
+    top:0.5px;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+    display: inline;
+    text-decoration: none;
+    top:-20px;
+}
+
+
+
+header {
+background-color: white ;
+position: fixed;
+margin :0px auto;
+top: 0.1px;
+height: 50px;
+left: 0;  
+right: 0; 
+display: flex;
+align-items: center;
+}
+header ul{
+list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  }
+
+header * {
+display: inline;
+
+}
+header li {
+margin: 50px;
+float: left;
+
+}
+li a:hover {
+  background-color: #111;
+  color: white;
+}
+header li a {
+color: black;
+display: block;
+color: black;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+border-radius: 8px;
+}
+body {
+	font-family: Arial;
+	background-color: #DBF9FC;
+	background-size:cover;
+}
+.Home {
+    font-family: Arial;
+    background-color: #0099ff;
+    
+	
+}
+.checked {
+  color: orange;
+}
+.content{
+top :1px;
+background-color:white;
+width:30%;
+height:30%;
+margin:15px;
+box-sizing :border -box;
+float :left;
+border-radius :20px;
+cursor: pointer;
+box-shadow:0 14px 28px rgba(0,0,0,0.25);
+
+
+}
+
+h3{
+text-align :center;
+font-size :30px;
+margin:0;
+padding-top: 10px; 
+}
+.gallery{
+display :flex;
+flex-wrap :wrap;
+width :100%;
+align-items :center;
+margin :50 px 0;
+}
+img{
+align-items :center;
+heigth :50%;
+width :50%;
+}
+
+.content:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+ .cart,.buynow{
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+ font-weight: bold;
+    line-height: 25px;
+  margin: 2px 2px;
+  cursor: pointer;
+  border-radius :8px;
+}
+.cart {
+	background-color: #FF9700;
+}
+
+.buynow {
+	background-color: #FB6423;
+}
+
+*popup {
+	 background-color: #ffffff;
+    width: 420px;
+    padding: 30px 40px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    font-family: "Poppins",sans-serif;
+    display: none; 
+    text-align: center;}
+
+
